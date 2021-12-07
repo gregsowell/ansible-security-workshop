@@ -1,0 +1,10 @@
+---
+- name: stop attack simulation
+  hosts: attacker
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: stop attack process
+      shell: >
+        sleep 2;ps -ef | grep -v grep | grep -w /usr/bin/watch | awk '{print $2}'|xargs kill &>/dev/null; sleep 2
